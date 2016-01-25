@@ -17,7 +17,7 @@ is the size in bytes to be used for the chunk cache.  This defaults to 1024 (1MB
 
 ```python
 import h5py_cache
-with h5py_cache.File('test.h5', chunk_cache_mem_size=1024**3) as f:
+with h5py_cache.File('test.h5', chunk_cache_mem_size=1024**3, 'a') as f:
     f.create_dataset(...)
 ```
 
