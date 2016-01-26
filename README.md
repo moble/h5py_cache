@@ -13,8 +13,8 @@ to make it easier to control the cache size.
 The main function in this little package is `h5py_cache.File`, which is just a wrapper for `h5py.File`, with a couple
 extra arguments to set the cache.  (Note that the function name is capitalized, despite the fact that it is not a class
 object.  This is just for calling consistency.)  The most important new argument is the `chunk_cache_mem_size`, which
-is the size in bytes to be used for the chunk cache.  This defaults to 1024 (1MB), which is also the default used by
-`h5py`.  However, you may wish to set it much larger, for example:
+is the size in bytes to be used for the chunk cache.  This defaults to `1024**2` (1MB), which is also the default used
+by `h5py`.  However, you may wish to set it much larger, for example:
 
 ```python
 import h5py_cache
