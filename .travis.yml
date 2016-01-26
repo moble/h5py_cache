@@ -19,7 +19,7 @@ install:
   - conda info -a
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
-  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy h5py
+  - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION numpy h5py pytest
   - source activate test-environment
   - python setup.py install
 
