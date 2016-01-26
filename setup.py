@@ -8,7 +8,6 @@ from distutils.core import setup
 setup(name='h5py_cache',
       description='Create h5py File object with specified cache',
       author='Michael Boyle',
-      # author_email='',
       url='https://github.com/moble/h5py_cache',
       packages=['h5py_cache', ],
       package_dir={'h5py_cache': '.'},

@@ -1,0 +1,24 @@
+package:
+  name: h5py_cache
+  version: '1.0'
+
+source:
+  git_url: https://github.com/moble/h5py_cache.git
+
+build:
+  detect_binary_files_with_prefix: true
+  script: python setup.py install
+
+requirements:
+  build:
+    - python
+
+  run:
+    - python
+    - numpy
+    - h5py
+
+about:
+  home: 'https://github.com/moble/h5py_cache'
+  license: MIT
+  summary: 'Create h5py File object with specified cache'

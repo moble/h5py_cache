@@ -2,6 +2,28 @@
 # See LICENSE file for details: <https://github.com/moble/h5py_cache/blob/master/LICENSE>
 
 
+def _find_next_prime(N):
+    """Find next prime >= N"""
+    def is_prime(n):
+        if n % 2 == 0:
+            return False
+        i = 3
+        while i * i <= n:
+            if n % i:
+                i += 2
+            else:
+                return False
+        return True
+    if N < 3:
+        return 2
+    if N % 2 == 0:
+        N += 1
+    for n in range(N, 2*N, 2):
+        if is_prime(n):
+            return n
+    raise AssertionError("Failed to find a prime number between {0} and {1}...".format(N, 2*N))
+
+
 def File(name, mode='a', chunk_cache_mem_size=1024**2, w0=0.75, n_cache_chunks=None, **kwds):
     """Create h5py File object with cache specification
 
@@ -45,7 +67,7 @@ def File(name, mode='a', chunk_cache_mem_size=1024**2, w0=0.75, n_cache_chunks=N
         bytes_per_object = np.dtype(np.float).itemsize  # assume float as most likely
     if not n_cache_chunks:
         n_cache_chunks = int(np.ceil(np.sqrt(chunk_cache_mem_size / bytes_per_object)))
-    nslots = 100 * n_cache_chunks
+    nslots = _find_next_prime(100 * n_cache_chunks)
     propfaid = h5py.h5p.create(h5py.h5p.FILE_ACCESS)
     settings = list(propfaid.get_cache())
     settings[1:] = (nslots, chunk_cache_mem_size, w0)
