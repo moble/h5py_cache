@@ -1,4 +1,5 @@
-# h5py_cache
+# h5py_cache <a href="https://travis-ci.org/moble/h5py_cache"><img align="right" hspace="3" alt="Status of automatic build and test suite" src="https://travis-ci.org/moble/h5py_cache.svg?branch=master"></a> <a href="https://github.com/moble/h5py_cache/blob/master/LICENSE"><img align="right" hspace="3" alt="Code distributed under the open-source MIT license" src="http://moble.github.io/spherical_functions/images/MITLicenseBadge.svg"></a>
+
 Create h5py File object with specified cache
 
 This is just a simple package for creating `h5py.File` objects with a given cache.  The cache interacts with `HDF5`
@@ -81,3 +82,9 @@ before the result could be written to disk.  That was because the default cache 
 easy through the `h5py` interface as I would have hoped, but once I had done it, so that all `N` elements could fit in
 the cache at one time, the transposition was blazing fast: 12 seconds, or about 100 times faster than my first attempt.
 
+
+
+## Acknowledgments
+
+The work of creating this code was supported in part by the Sherman Fairchild
+Foundation and by NSF Grants No. PHY-1306125 and AST-1333129.
