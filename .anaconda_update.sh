@@ -22,3 +22,6 @@ do
     conda server upload --force `conda build ${1:-.} --output`
 
 done
+
+# While we're at it, update PyPi too
+python setup.py register sdist upload
