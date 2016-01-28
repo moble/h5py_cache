@@ -1,27 +1,39 @@
 #! /usr/bin/env sh
 set -e
 
-# Run this script, go to anaconda.org and find your new package, click on "Settings", then "Continuous Integration",
-# and enable automatic building of your package whenever there is an upload to branch 'refs/heads/master'.  Be sure to
-# use the label 'main', unless you want a 'dev' sub-channel.
+function usage {
+    echo
+    echo "Usage: update_anaconda_org.sh [conda_dir [conda_conversions [update_pypi]]]"
+    echo
+    echo '    conda_dir: Directory in which .binstar.yml is found, and any conversions are stored.  Defaults to `.`.'
+    echo '    conda_conversions: {osx-64,linux-32,linux-64,win-32,win-64,all}, passed to `conda convert`.  Defaults to `all`.'
+    echo '    update_pypi: Defaults to `--pypi`, which runs `python setup.py register sdist upload`.  Anything else does not.'
+    exit 1
+}
+if [[ $# == 1 && ( $1 == "-h" || $1 == "--help" ) ]]; then
+    usage;
+fi
 
-PWD=`pwd`
-DIR=`basename $PWD`
 
-# anaconda-build trigger moble/${DIR}
+CONDA_DIR=${1:-.}
 
-export CONDA_NPY=110
+CONVERSIONS=${2:-all}
+
+PYPI=${3:---pypi}
+
 CONDA_PYs=( 27 35 )
-
 for CONDA_PY in "${CONDA_PYs[@]}"
 do
 
-    echo CONDA_PY=${CONDA_PY} CONDA_NPY=${CONDA_NPY}
+    echo CONDA_PY=${CONDA_PY}
     export CONDA_PY
-    conda build --no-binstar-upload ${1:-.}
-    conda server upload --force `conda build ${1:-.} --output`
+    conda build --no-binstar-upload ${CONDA_DIR}
+    mkdir -p ${CONDA_DIR}/conversions
+    conda convert -p ${CONVERSIONS} -o ${CONDA_DIR}/conversions `conda build ${CONDA_DIR} --output`
 
 done
+conda server upload --force ${CONDA_DIR}/conversions/*/*tar.bz2
 
-# While we're at it, update PyPi too
-python setup.py register sdist upload
+if [ "$PYPI" == "--pypi" ]; then
+    python setup.py register sdist upload
+fi
