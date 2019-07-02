@@ -1,4 +1,4 @@
-# h5py_cache <a href="https://travis-ci.org/moble/h5py_cache"><img align="right" hspace="3" alt="Status of automatic build and test suite" src="https://travis-ci.org/moble/h5py_cache.svg?branch=master"></a> <a href="https://github.com/moble/h5py_cache/blob/master/LICENSE"><img align="right" hspace="3" alt="Code distributed under the open-source MIT license" src="http://moble.github.io/spherical_functions/images/MITLicenseBadge.svg"></a>
+# h5py_cache <a href="https://github.com/moble/h5py_cache/blob/master/LICENSE"><img align="right" style="margin: 0px 2px" alt="MIT license" src="https://img.shields.io/github/license/moble/h5py_cache.svg"></a>
 
 Create h5py File object with specified cache
 
