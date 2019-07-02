@@ -1,4 +1,4 @@
-| NOTE: This module is now redundant, because its functionality has [now been merged into `h5py` itself.](https://github.com/h5py/h5py/pull/1008), and is available as of h5py version 2.9.0.  Pull requests and issues should be raised in [the `h5py` repo](https://github.com/h5py/h5py). |
+| NOTE: This module is now redundant, because its functionality has [now been merged into `h5py` itself](https://github.com/h5py/h5py/pull/1008), and is available as of h5py version 2.9.0.  Pull requests and issues should be raised in [the `h5py` repo](https://github.com/h5py/h5py). |
 | --- |
 
 
